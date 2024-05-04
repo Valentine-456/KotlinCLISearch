@@ -1,5 +1,10 @@
 plugins {
     kotlin("jvm") version "1.9.23"
+    application
+}
+
+application {
+    mainClass.set("org.example.MainKt")
 }
 
 group = "org.example"
@@ -11,11 +16,23 @@ repositories {
 
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.6")
 }
 
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes["Main-Class"] = application.mainClass.get()
+    }
+    from({
+        configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }
+    })
+}
+
 kotlin {
     jvmToolchain(18)
 }
