@@ -17,8 +17,11 @@ repositories {
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.6")
-    implementation("org.apache.lucene:lucene-core:9.10.0")
-    implementation("org.apache.lucene:lucene-queryparser:9.10.0")
+    implementation("org.apache.lucene:lucene-core:9.0.0")
+    implementation("org.apache.lucene:lucene-queryparser:9.0.0")
+    implementation("org.apache.lucene:lucene-analysis-common:9.0.0")
+
+
 }
 
 tasks.test {
