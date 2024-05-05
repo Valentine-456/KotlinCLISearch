@@ -1,6 +1,7 @@
 package org.example
 
-import kotlinx.cli.*
+import kotlinx.cli.ArgParser
+import kotlinx.cli.ExperimentalCli
 import org.example.subcommands.IndexSubcommand
 import org.example.subcommands.SearchSubcommand
 

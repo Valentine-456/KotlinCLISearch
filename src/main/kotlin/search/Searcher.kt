@@ -5,17 +5,23 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer
 import org.apache.lucene.document.Document
 import org.apache.lucene.index.DirectoryReader
 import org.apache.lucene.index.IndexReader
-import org.apache.lucene.search.*
+import org.apache.lucene.search.IndexSearcher
+import org.apache.lucene.search.Query
 import org.apache.lucene.store.Directory
 import org.apache.lucene.store.FSDirectory
 import org.apache.lucene.util.QueryBuilder
 import org.example.files.FileUtils
+import java.nio.file.Files
 
 
 class Searcher(private val queryStr: String, private val path: String) {
     private val searcher: IndexSearcher
+
     init {
-        val indexDir= FileUtils.resolveIndexDirectory(path)
+        val indexDir = FileUtils.resolveIndexDirectory(path)
+        if (!Files.exists(indexDir)) {
+            throw IllegalStateException()
+        }
         val directory: Directory = FSDirectory.open(indexDir)
         val indexReader: IndexReader = DirectoryReader.open(directory)
         searcher = IndexSearcher(indexReader)

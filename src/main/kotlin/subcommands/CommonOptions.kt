@@ -7,12 +7,12 @@ import kotlinx.cli.default
 import java.nio.file.Paths
 
 @OptIn(ExperimentalCli::class)
-abstract class CommonOptions(name: String, actionDescription: String): Subcommand(name, actionDescription) {
-    private val cwd = Paths.get("").toAbsolutePath();
+abstract class CommonOptions(name: String, actionDescription: String) : Subcommand(name, actionDescription) {
+    private val cwd = Paths.get("").toAbsolutePath()
     val path by option(
         ArgType.String,
         shortName = "p",
         fullName = "path",
         description = "Folder to index/search"
-    ).default(cwd.toString());
+    ).default(cwd.toString())
 }
