@@ -1,17 +1,15 @@
 package org.example
 
 import kotlinx.cli.*
+import org.example.subcommands.IndexSubcommand
+import org.example.subcommands.SearchSubcommand
 
+
+@OptIn(ExperimentalCli::class)
 fun main(args: Array<String>) {
     val parser = ArgParser("KotlinCLISearch")
 
-    val name by parser.option(
-        ArgType.String,
-        shortName = "n",
-        description = "User name"
-    )
-
+    parser.subcommands(IndexSubcommand(), SearchSubcommand())
     parser.parse(args)
 
-    println("Hello, $name!")
 }
