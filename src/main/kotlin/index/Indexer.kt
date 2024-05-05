@@ -14,11 +14,10 @@ import java.io.File
 import java.io.FileReader
 
 
-class Indexer(val path: String) {
+class Indexer(private val path: String) {
      public fun index() {
          val dataDir = File(path)
-         val indexDirPath = FileUtils.createDir(path, ".indexKotlinSearchCLI")
-//         println(indexDirPath.toString())
+         val indexDirPath = FileUtils.createIndexDirectory(path)
 
          val indexDir: Directory = FSDirectory.open(indexDirPath)
          val analyzer: Analyzer = StandardAnalyzer()
@@ -37,7 +36,7 @@ class Indexer(val path: String) {
     private fun parseDocument(file: File, indexWriter: IndexWriter) {
         val doc: Document = Document()
         doc.add(StoredField("path", file.absolutePath.toString()))
-        doc.add(TextField("body", FileReader(file)))
+        doc.add(TextField("content", FileReader(file)))
         indexWriter.addDocument(doc)
     }
 }
