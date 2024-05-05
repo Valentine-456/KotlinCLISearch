@@ -28,7 +28,7 @@ When implementing this CLI tool, I thought a lot how similar things are implemen
 To use CLI tool download .JAR file from here.
 ```bash
 git clone https://github.com/Valentine-456/KotlinCLISearch
-cd KotlinTextSearchCLI
+cd ./KotlinCLISearch
 ./gradlew build
 ./gradlew assemble
 
